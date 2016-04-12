@@ -49,7 +49,7 @@ articleView.handleCategoryFilter = function() {
   $('#category-filter').on('change', function(){
     var catVal = $(this).val();
     if (catVal){
-      $('article').hide().filter('[data-catagory="'+ catVal + '"]').show();
+      $('article').hide().filter('[data-category="'+ catVal + '"]').show();
     }
     else {
       $('article').show();
