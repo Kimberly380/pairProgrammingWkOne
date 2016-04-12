@@ -31,13 +31,13 @@ articleView.handleAuthorFilter = function() {
     var authorVal = $(this).val();
     if (authorVal) {
       $('article').hide().filter('[data-author="'+ authorVal + '"]').show();
-      // TODO: If the select box was changed to an option that has a value, we need to hide all the articles,
+      // WeDidIt: If the select box was changed to an option that has a value, we need to hide all the articles,
       //       and then show just the ones that match for the author that was selected.
       //       Use an "attribute selector" to find those articles, and fade them in for the reader.
 
     } else {
       $('article').show();
-      // TODO: If the select box was changed to an option that is blank, we should
+      // WeDidIt: If the select box was changed to an option that is blank, we should
       //       show all the articles, except the one article we are using as a template.
 
     }
@@ -46,6 +46,21 @@ articleView.handleAuthorFilter = function() {
 };
 
 articleView.handleCategoryFilter = function() {
+  $('#category-filter').on('change', function(){
+    var catVal = $(this).val();
+    if (catVal){
+      $('article').hide().filter('[data-catagory="'+ catVal + '"]').show();
+    }
+    else {
+      $('article').show();
+    }
+    $('#author-filter').val('');
+  });
+
+
+
+
+
   // TODO: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
   //       When an option with a value is selected, hide all the articles, then reveal the matches.
   //       When the blank (default) option is selected, show all the articles, except for the template.
@@ -79,4 +94,5 @@ articleView.setTeasers = function() {
 $(function(){
   articleView.populateFilters();
   articleView.handleAuthorFilter();
+  articleView.handleCategoryFilter();
 });
