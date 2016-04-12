@@ -74,10 +74,12 @@ articleView.handleMainNav = function() {
   //       single .tab-content section that is associated with the clicked .tab element.
   //       So: You need to dynamically build a selector string with the correct ID, based on the
   //       data available to you on the .tab element that was clicked.
-  var dataContent = $('[data-content]').val();
-  $('.main-nav').on('click',function(){
-    $('main > section').not('#about').hide();
-    $('section').filter('#'+ this.dataContent + '').find('*').show();
+  //var dataContent = $('[data-content]').val();
+  $('.main-nav').on('click','li',function(){
+    var dataContent = '#'+ $(this).attr('data-content');
+    console.log(dataContent);
+    $('main > section').not('#'+ $(this).attr('data-content')).hide();
+    $('section').filter('#'+ $(this).attr('data-content')).find('*').show();
 
     //$('article').hide().filter('[data-category="'+ catVal + '"]').show();
   });
