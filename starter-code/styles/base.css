@@ -43,3 +43,7 @@ a{
   color:red;
   background-color:black;
 }
+
+body {
+  background-color:grey;
+}
