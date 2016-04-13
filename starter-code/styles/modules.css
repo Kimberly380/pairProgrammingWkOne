@@ -1,13 +1,34 @@
-/* TODO: Give the site header a nice background color, from your selected color scheme. */
-
 .site-header {
-  padding: .1em;
+  background: #FFEAAA;
+}
+
+/* DONE: Float the main header to the left, to make room for the hamburger menu. */
+.heading-group-h1 {
+  float: left;
+  padding: 0 0 .2em 1em;
+}
+
+/* DONE: Add styles for the icon-menu class. It should be bigger, and off to the right. */
+.icon-menu {
+  font-size: 1.5em;
+  float: right;
+  padding: 10px;
+  margin-top: .8em;
 }
 
 .main-nav {
+  padding: 0.1em;
+}
+
+.main-nav ul {
+  display: none;
   padding: 0;
   list-style: none;
   clear: both;
+}
+
+.main-nav:hover ul {
+  display: block;
 }
 
 .main-nav li {
@@ -17,15 +38,9 @@
   border-bottom: 1px solid #ccc;
 }
 
-/* TODO: Style the filters so they look good on small screens:
-    Use the full width, and remove the list bullet. */
-
 #filters {
   padding: 0;
-}
-
-#filters select {
-
+  list-style: none;
 }
 
 .template {
@@ -41,10 +56,23 @@
   text-decoration: none;
 }
 
-.pull-left {
-  float: left;
-}
+/* DONE: Now add styles for how things should look on a larger screen:
+         - Hide the hamburger.
+         - Main should be all on one row, with padding spaced better for a larger screen.
+         - Just, ya know, try to make it look good! */
+/* @media only screen... */
+@media screen and (min-width: 600px) {
+  .icon-menu {
+    display: none;
+  }
 
-.pull-right {
-  float: right;
+  .main-nav ul {
+    display: block;
+  }
+
+  .main-nav li {
+    display: inline-block;
+    border-bottom: none;
+    padding-left: 18px;
+  }
 }
