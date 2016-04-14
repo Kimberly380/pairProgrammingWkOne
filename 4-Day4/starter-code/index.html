@@ -9,7 +9,21 @@ s<!DOCTYPE html>
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
+    <script type="text/x-handlebars=template">
+      <article>
+        <header>
+          <h1>{{title}} </h1>
+          <div>By <address><a href = "">{{author}} </a> </address>
+            published <time> {{publishedOn}} </time>
+           </div>
+        </header>
+        <section>
+          {{{body}}}
+        </section>
+        <a href="#" class="read-on"> Read On &rarr;</a>
+      </acrticle>
 
+    </script>
     <!--
       TODO: Add a script tag to hold the Handlebars template.
         - Be sure to give it a meaningful id attribute.
@@ -73,7 +87,7 @@ s<!DOCTYPE html>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- TODO: Include Handlebars.JS from a CDN -->
+    <!-- Done: Include Handlebars.JS from a CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.amd.min.js"></script>
     <script src="scripts/blogArticles.js"></script>
     <script src="scripts/article.js"></script>
