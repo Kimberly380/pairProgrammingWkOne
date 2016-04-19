@@ -53,7 +53,7 @@ articleView.handleMainNav = function() {
 };
 
 articleView.setTeasers = function() {
-  $('.article-body *:nth-of-type(n+2)').hide(); // Hide elements beyond the first 2 in any artcile body.
+  $('.article-body *:nth-of-type(n+2)').hide(); // Hide elements beyond the first 2 in any article body.
 
   $('#articles').on('click', 'a.read-on', function(e) {
     e.preventDefault();
