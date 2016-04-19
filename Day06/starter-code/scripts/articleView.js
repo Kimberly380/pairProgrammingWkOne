@@ -62,6 +62,8 @@ articleView.setTeasers = function() {
   });
 };
 
+
+
 articleView.initNewArticlePage = function() {
   $('.tab-content').show();
   $('#export-field').hide();
@@ -100,6 +102,7 @@ articleView.create = function() {
 };
 
 
+//calling all functions dependent on data retrieval
 articleView.initIndexPage = function() {
   Article.all.forEach(function(a){
     $('#articles').append(a.toHtml());

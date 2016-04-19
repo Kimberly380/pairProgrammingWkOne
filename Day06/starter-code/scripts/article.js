@@ -1,3 +1,5 @@
+
+//create object constructor to capture data from data files
 function Article (opts) {
   this.author = opts.author;
   this.authorUrl = opts.authorUrl;
@@ -43,25 +45,41 @@ Article.loadAll = function(rawData) {
 
 // This function will retrieve the data from either a local or remote source,
 // and process it, then hand off control to the View.
+
+
 Article.fetchAll = function() {
   if (localStorage.rawData) {
-    // When rawData is already in localStorage,
-    // we can load it by calling the .loadAll function,
-    // and then render the index page (using the proper method on the articleView object).
-    Article.loadAll(//TODO: What do we pass in here to the .loadAll function?
-    );
-    articleView.someFunctionToCall/*()*/; //TODO: Change this fake method call to the correct one that will render the index page.
+              
+// //   //   // When rawData is already in localStorage,
+// //   //   // we can load it by calling the .loadAll function,
+// //   //   // and then render the index page (using the proper method on the articleView object).
+// //   //   //TODO: What do we pass in here to the .loadAll function?
+    Article.loadAll( 
+       JSON.parse(localStorage.getItem('storedData'))
+       );
+        
+    articleView.initIndexPage()/*()*/; //TODO: Change this fake method call to the correct one that will render the index page.
   } else {
-    // TODO: When we don't already have the rawData in local storage, we need to get it from the JSON file,
-    //       which simulates data on a remote server. Run live-server or pushstate-server!
-    //       Please do NOT browse to your HTML file(s) using a "file:///" link. RUN A SERVER INSTEAD!!
+    $.getJSON('../data/ipsumArticles.json')
+     .done(function(data){  
+       Article.loadAll(data);
+       localStorage.setItem('storedData',JSON.stringify(data) ); 
+       articleView.initIndexPage(data);  
+     });
+      
+     
+     
+//     // TODO: When we don't already have the rawData in local storage, we need to get it from the JSON file,
+//     //       which simulates data on a remote server. Run live-server or pushstate-server!
+//     //       Please do NOT browse to your HTML file(s) using a "file:///" link. RUN A SERVER INSTEAD!!
 
-    // 1. Retrieve the JSON file from the server with AJAX (which jQuery method is best for this?),
+//     // 1. Retrieve the JSON file from the server with AJAX (which jQuery method is best for this?),
 
-    // 2. Store the resulting JSON data with the .loadAll method,
+//     // 2. Store the resulting JSON data with the .loadAll method,
 
-    // 3. Cache the data in localStorage so next time we won't enter this "else" block (avoids hitting the server),
+//     // 3. Cache the data in localStorage so next time we won't enter this "else" block (avoids hitting the server),
 
-    // 4. Render the index page (perhaps with an articleView method?).
+//     // 4. Render the index page (perhaps with an articleView method?).
+    
   }
 };
