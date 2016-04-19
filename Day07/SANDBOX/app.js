@@ -1,25 +1,18 @@
 
+//practice passing a function with a parameter to an iffe
 
 
-
-
-//get data from file, store in local storage
-$.getJSON('data.json').done(function (data) {
-      
-       
-    $('section').append(data[0].title);
-    localStorage.setItem('storedData',JSON.stringify(data) )
+(function(a,b){
+   a(); 
+console.log(a(6)+b)
     
-});
+})(defineA,6);
 
-//extract data from local storage
-var storageStuff=
-JSON.parse(localStorage.getItem('storedData'));
+//############################
 
 
+function defineA (z){
+  return z*z;
+};
 
 
-
-//
-//function runAll(){   if local storage, etc
-//}
