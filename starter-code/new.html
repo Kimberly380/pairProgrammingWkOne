@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="vendor/styles/railscasts.css">
 
     <script id="article-template" type="text/x-handlebars-template">
-      <article class="clearfix" data-author="{{authorSlug}}" data-category="{{categorySlug}}">
+      <article
+        class="clearfix"
+        data-author="{{authorSlug}}"
+        data-category="{{categorySlug}}">
         <header>
           <h1>{{title}}</h1>
           <div class="byline">
@@ -24,7 +27,7 @@
         <a href="#" class="read-on">Read on &rarr;</a>
       </article>
     </script>
-  </head>
+    </head>
   <body>
     <header class="site-header clearfix">
       <section class="heading-group-h1 pull-left">
@@ -38,8 +41,6 @@
         <ul>
           <li class="tab" data-content="write"><a href="#" class="icon-home"> Write</a></li>
           <li class="tab" data-content="articles"><a href="#" class="icon-home"> Preview</a></li>
-
-
         </ul>
       </nav>
     </header>

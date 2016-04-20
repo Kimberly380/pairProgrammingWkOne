@@ -2,18 +2,14 @@
   background: #FFEAAA;
 }
 
-/* DONE: Float the main header to the left, to make room for the hamburger menu. */
 .heading-group-h1 {
   float: left;
   padding: 0 0 .2em 1em;
 }
 
-/* DONE: Add styles for the icon-menu class. It should be bigger, and off to the right. */
 .icon-menu {
-  font-size: 1.5em;
+  font-size: 3em;
   float: right;
-  padding: 10px;
-  margin-top: .8em;
 }
 
 .main-nav {
@@ -56,23 +52,32 @@
   text-decoration: none;
 }
 
-/* DONE: Now add styles for how things should look on a larger screen:
-         - Hide the hamburger.
-         - Main should be all on one row, with padding spaced better for a larger screen.
-         - Just, ya know, try to make it look good! */
-/* @media only screen... */
-@media screen and (min-width: 600px) {
+#article-export label {
+  font-size: .8em;
+  font-style: italic;
+  color: #ccc;
+}
+
+@media only screen and (min-width: 640px) {
   .icon-menu {
     display: none;
+  }
+
+  .main-nav {
+    padding: .2em .2em .2em 2em;
   }
 
   .main-nav ul {
     display: block;
   }
 
-  .main-nav li {
-    display: inline-block;
+  .main-nav ul li {
+    display: inline;
     border-bottom: none;
-    padding-left: 18px;
   }
+
+  .main-nav ul li:hover a {
+    color: #29506D;
+  }
+
 }
