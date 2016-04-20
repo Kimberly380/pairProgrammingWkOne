@@ -19,11 +19,17 @@
     return template(this);
   };
   
-  // TODO: Set up a DB table for articles.
+  // DONE: Set up a DB table for articles.
   Article.createTable = function(callback) {
-    webDB.init();
+   // webDB.init();
     webDB.execute(
-     'CREATE TABLE articles (title VARCHAR(50), category VARCHAR(50), author VARCHAR(50),authorUrl VARCHAR(50),publishedOn DATETIME,body TEXT);',
+    
+    [{
+      sql: 'DROP TABLE articles;'
+    },{
+      sql: 'CREATE TABLE articles (title VARCHAR(255) NOT NULL, category VARCHAR(255), author VARCHAR(50),authorUrl VARCHAR(50),publishedOn DATETIME,body TEXT);',
+    }  
+     ],
       function(result) {
         console.log('Successfully set up the articles table.', result);
         if (callback) callback();
@@ -34,7 +40,7 @@
   // TODO: Use correct SQL syntax to delete all records from the articles table.
   Article.truncateTable = function(callback) {
     webDB.execute(
-      'DELETE ...;', // <----finish the command here, inside the quotes.
+      'DELETE FROM articles WHERE 1=1;', // <----finish the command here, inside the quotes.
       callback
     );
   };
@@ -45,8 +51,8 @@
     webDB.execute(
       [
         {
-          'sql': '...;',
-          'data': [],
+          'sql': 'INSERT INTO articles (title, category, author, authorUrl, publishedOn, body) VALUES(?, ?, ?, ?, ?, ?)',
+          'data': [this.title, this.category, this.author, this.authorUrl, this.publishedOn],
         }
       ],
       callback
