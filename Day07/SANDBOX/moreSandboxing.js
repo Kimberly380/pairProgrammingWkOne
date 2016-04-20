@@ -13,7 +13,7 @@ console.log(arr2);
 //********
 // now reduce:
 
-var reduceArr2 = arr2.reduce(function(a,b,c){
+var reduceArr2 = arr2.reduce(function(a,b){
       return a+b+c;  //c is length of array?
 });
 
@@ -22,7 +22,12 @@ console.log(reduceArr2);
 var reduceArr2 = arr2.reduce(function(a,b){
    return a.concat(b); 
     
-});
+},[]);
 
 console.log(reduceArr2);  //did not work??
+
+
+//#########
+
+arr=[{1:1}]
 
