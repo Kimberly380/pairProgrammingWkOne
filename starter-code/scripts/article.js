@@ -21,18 +21,17 @@
   
   // DONE: Set up a DB table for articles.
   Article.createTable = function(callback) {
-   // webDB.init();
+    console.log('something');
     webDB.execute(
-    
-    [{
-      sql: 'DROP TABLE articles;'
-    },{
-      sql: 'CREATE TABLE articles (title VARCHAR(255) NOT NULL, category VARCHAR(255), author VARCHAR(50),authorUrl VARCHAR(50),publishedOn DATETIME,body TEXT);',
-    }  
-     ],
+      'DROP TABLE articles;'
+    );
+    webDB.execute(
+      'CREATE TABLE IF NOT EXISTS articles (title VARCHAR(255) NOT NULL, category VARCHAR (255) NOT NULL, author VARCHAR(255) NOT NULL, authorUrl VARCHAR(255) NOT NULL, publishedOn DATETIME NOT NULL, body TEXT NOT NULL);'
+    ,  
       function(result) {
         console.log('Successfully set up the articles table.', result);
         if (callback) callback();
+        console.log(Article.all);
       }
     );
   };
@@ -45,20 +44,20 @@
     );
   };
 
-
+  
   // TODO: Insert an article instance into the database:
-  Article.prototype.insertRecord = function(callback) {
+  Article.insertRecord = function(obj, callback) {
     webDB.execute(
       [
         {
           'sql': 'INSERT INTO articles (title, category, author, authorUrl, publishedOn, body) VALUES(?, ?, ?, ?, ?, ?)',
-          'data': [this.title, this.category, this.author, this.authorUrl, this.publishedOn],
+          'data': [obj.title, obj.category, obj.author, obj.authorUrl, obj.publishedOn, obj.body],
         }
       ],
       callback
     );
   };
-
+  // Article.insertRecord();
   // TODO: Delete an article instance from the database:
   Article.prototype.deleteRecord = function(callback) {
     webDB.execute(
@@ -94,17 +93,21 @@
   // we need to retrieve the JSON and process it.
   // If the DB has data already, we'll load up the data (sorted!), and then hand off control to the View.
   Article.fetchAll = function(next) {
-    webDB.execute('', function(rows) { // TODO: fill these quotes to 'select' our table.
+    webDB.execute('SELECT * FROM articles;', function(rows) { // TODO: fill these quotes to 'select' our table.
       if (rows.length) {
         // TODO: Now, 1st - instanitate those rows with the .loadAll function,
         // and 2nd - pass control to the view by calling whichever function argument was passed in to fetchAll.
-
+        Article.loadAll();
+       
       } else {
         $.getJSON('/data/hackerIpsum.json', function(rawData) {
           // Cache the json, so we don't need to request it next time:
           rawData.forEach(function(item) {
             var article = new Article(item); // Instantiate an article based on item from JSON
             // TODO: Cache the newly-instantiated article in the DB: (what can we call on each 'article'?)
+            Article.insertRecord(article, function() {
+              console.log('added oh yea');
+            });
 
           });
           // Now get ALL the records out the DB, with their database IDs:
