@@ -18,7 +18,7 @@
 
     return template(this);
   };
-  
+
   // DONE: Set up a DB table for articles.
   Article.createTable = function(callback) {
     console.log('something');
@@ -27,7 +27,7 @@
     );
     webDB.execute(
       'CREATE TABLE IF NOT EXISTS articles (title VARCHAR(255) NOT NULL, category VARCHAR (255) NOT NULL, author VARCHAR(255) NOT NULL, authorUrl VARCHAR(255) NOT NULL, publishedOn DATETIME NOT NULL, body TEXT NOT NULL);'
-    ,  
+    ,
       function(result) {
         console.log('Successfully set up the articles table.', result);
         if (callback) callback();
@@ -36,7 +36,7 @@
     );
   };
 
-  // TODO: Use correct SQL syntax to delete all records from the articles table.
+  // DONE: Use correct SQL syntax to delete all records from the articles table.
   Article.truncateTable = function(callback) {
     webDB.execute(
       'DELETE FROM articles WHERE 1=1;', // <----finish the command here, inside the quotes.
@@ -44,38 +44,38 @@
     );
   };
 
-  
-  // TODO: Insert an article instance into the database:
-  Article.insertRecord = function(obj, callback) {
+
+  // DONE: Insert an article instance into the database:
+  Article.prototype.insertRecord = function(callback) {
     webDB.execute(
       [
         {
           'sql': 'INSERT INTO articles (title, category, author, authorUrl, publishedOn, body) VALUES(?, ?, ?, ?, ?, ?)',
-          'data': [obj.title, obj.category, obj.author, obj.authorUrl, obj.publishedOn, obj.body],
+          'data': [this.title, this.category, this.author, this.authorUrl, this.publishedOn, this.body],
         }
       ],
       callback
     );
   };
   // Article.insertRecord();
-  // TODO: Delete an article instance from the database:
+  // DONE: Delete an article instance from the database:
   Article.prototype.deleteRecord = function(callback) {
     webDB.execute(
       [
         {
-          /* ... */
+          'sql' : 'DELETE FROM articles WHERE title LIKE "%Transmitting%";'
         }
       ],
       callback
     );
   };
 
-  // TODO: Update an article instance, overwriting it's properties into the corresponding record in the database:
+  // DONE: Update an article instance, overwriting it's properties into the corresponding record in the database:
   Article.prototype.updateRecord = function(callback) {
     webDB.execute(
       [
         {
-          /* ... */
+          'sql' : 'UPDATE articles SET author = "Virginia Slims" WHERE author = "Virginia Sawayn";'
         }
       ],
       callback
@@ -89,32 +89,31 @@
     });
   };
 
-  // TODO: Refactor this to check if the database holds any records or not. If the DB is empty,
+  // DONE: Refactor this to check if the database holds any records or not. If the DB is empty,
   // we need to retrieve the JSON and process it.
   // If the DB has data already, we'll load up the data (sorted!), and then hand off control to the View.
   Article.fetchAll = function(next) {
-    webDB.execute('SELECT * FROM articles;', function(rows) { // TODO: fill these quotes to 'select' our table.
+    webDB.execute('SELECT * FROM articles;', function(rows) { // DONE: fill these quotes to 'select' our table.
       if (rows.length) {
-        // TODO: Now, 1st - instanitate those rows with the .loadAll function,
+        // DONE: Now, 1st - instanitate those rows with the .loadAll function,
         // and 2nd - pass control to the view by calling whichever function argument was passed in to fetchAll.
-        Article.loadAll();
-       
+        Article.loadAll(rows);
+        next();
       } else {
         $.getJSON('/data/hackerIpsum.json', function(rawData) {
           // Cache the json, so we don't need to request it next time:
           rawData.forEach(function(item) {
             var article = new Article(item); // Instantiate an article based on item from JSON
-            // TODO: Cache the newly-instantiated article in the DB: (what can we call on each 'article'?)
-            Article.insertRecord(article, function() {
-              console.log('added oh yea');
-            });
+            // DONE: Cache the newly-instantiated article in the DB: (what can we call on each 'article'?)
+            article.insertRecord();
 
           });
           // Now get ALL the records out the DB, with their database IDs:
-          webDB.execute('', function(rows) { // TODO: select our now full table
-            // TODO: Now, 1st - instanitate those rows with the .loadAll function,
+          webDB.execute('SELECT * FROM articles;', function(rows) { // DONE: select our now full table
+            // DONE: Now, 1st - instanitate those rows with the .loadAll function,
             // and 2nd - pass control to the view by calling whichever function argument was passed in to fetchAll.
-
+            Article.loadAll(rows);
+            next();
           });
         });
       }
@@ -169,18 +168,3 @@
 
   module.Article = Article;
 })(window);
-
-
-
-
-
-
-//kim notes:
-//function runSQLcmd_numberTwo(){
-  // webDB.execute([
-//     {
-//       sql: 'INSERT INTO articles (title, author, body) VALUES (?,?,?);',
-//       data: [New Book', 'Ip Some', 'Crazy cool stuff!']
-//     }
-//   ], function result{console.log(result);})
-// }
