@@ -20,7 +20,8 @@
 
   // Public interface method to set up the initial database connection:
   webDB.init = function(isVerbose) {
-    // Open and init DB
+    // Open and init DB 
+    console.log("are you working??");
     try {
       if (openDatabase) {
         _config(isVerbose);

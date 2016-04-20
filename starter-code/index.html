@@ -28,7 +28,7 @@
     <header class="site-header clearfix">
       <section class="heading-group-h1">
         <h1>
-          Kilovolt Blog!
+          Kilovolt Blogs!
         </h1>
         <h2>The shocking power of static pages</h2>
       </section>
@@ -80,14 +80,16 @@
     <script src="/vendor/scripts/jquery-2.1.4.js"></script>
     <script src="/vendor/scripts/handlebars.js"></script>
     <script src="/vendor/scripts/marked.js"></script>
-    <!-- TODO: Include the script files we need, that give us an API to the WebSQL feature of Chrome: -->
-
-    <script src="/scripts/article.js"></script>
+    <!-- DONE: Include the script files we need, that give us an API to the WebSQL feature of Chrome: -->
+    <script src="http://html5sql.com/js/html5sql.js"></script>
+    <script src="/scripts/webdb.js"></script>
+     <script src="/scripts/article.js"></script>
     <script src="/scripts/articleView.js"></script>
     <script>
       // DONE: Ensure that a database table for articles exists, every time we load the page.
-      Article.createTable();
-      Article.fetchAll(articleView.initIndexPage);
+      // webDB.init();
+      Article.createTable(Article.fetchAll);
+      // Article.fetchAll(articleView.initIndexPage);
     </script>
   </body>
 </html>
