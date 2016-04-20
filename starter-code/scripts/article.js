@@ -18,11 +18,12 @@
 
     return template(this);
   };
-
+  
   // TODO: Set up a DB table for articles.
   Article.createTable = function(callback) {
+    webDB.init();
     webDB.execute(
-      '...', // what SQL command do we run here inside these quotes?
+     'CREATE TABLE articles (title VARCHAR(50), category VARCHAR(50), author VARCHAR(50),authorUrl VARCHAR(50),publishedOn DATETIME,body TEXT);',
       function(result) {
         console.log('Successfully set up the articles table.', result);
         if (callback) callback();
@@ -159,3 +160,18 @@
 
   module.Article = Article;
 })(window);
+
+
+
+
+
+
+//kim notes:
+//function runSQLcmd_numberTwo(){
+  // webDB.execute([
+//     {
+//       sql: 'INSERT INTO articles (title, author, body) VALUES (?,?,?);',
+//       data: [New Book', 'Ip Some', 'Crazy cool stuff!']
+//     }
+//   ], function result{console.log(result);})
+// }
