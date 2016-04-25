@@ -1,15 +1,20 @@
 // TODO: Configure our two routes for this app with page.js, by registering each URL your app can handle,
 // linked to a a single controller function to handle it:
 
-// TODO: What function do we call to activate page.js? Fire it off now, to execute
+// DONE: What function do we call to activate page.js? Fire it off now, to execute
+
+
+  page.base('/');
+
+  page('', articlesController.index);
+  page('about',aboutController.index );
+
+  page();
 
 
 
 
 
-//kim notes:
-//page.base('/');
-//page('last bit of url' ,aboutCallBack);
-//page(); //run page
+
 
 
