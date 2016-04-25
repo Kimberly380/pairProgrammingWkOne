@@ -12,3 +12,7 @@
 
   module.articlesController = articlesController;
 })(window);
+
+
+
+//need to call this function!
