@@ -4,7 +4,7 @@
   aboutController.index = function() {
     $('#about').show().siblings().hide();
 
-    repos.requestRepos(render);
+    repos.requestRepos(repoView.index);
     // DONE: Call a function to load (AKA 'request') our repo data.
     // Pass in a view function as a callback, so our repos will render after the data is loaded.
 

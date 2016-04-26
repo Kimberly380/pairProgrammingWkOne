@@ -11,8 +11,12 @@
 
   // DONE: Remember that new Handlebars template? Let's compile it!
   // Save the result in this `render` variable.
-  var render = Handlebars.compile($('#repo-template').text());;
-
+  
+  var render = function(repo) {
+    var templateGit = Handlebars.compile($('#repo-template').text());
+    return templateGit(repo);
+  }
+  
   // DONE: If all the data is loaded, we can prep the UI and render the repos.
   repoView.index = function() {
     ui();
