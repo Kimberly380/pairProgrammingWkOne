@@ -1,6 +1,5 @@
 (function(module) {
   var repos = {};
-
   repos.all = [];
 
   repos.requestRepos = function(callback) {
@@ -10,7 +9,7 @@
 //getJSON('api.github.com/....', function(data){
     //process data (extract just the repo names) (header arguements...put token here???)
     //clall the DOM rendering callback function 
-    //callback();
+    callback();
  //}))  
 };
 
