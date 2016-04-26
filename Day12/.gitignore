@@ -4,7 +4,7 @@ logs
 .DS_Store
 
 # Secrets
-githubToken.js
+**/githubToken.js
 **/starter_code
 
 # Dependency directory
