@@ -11,11 +11,11 @@
         url: 'https://api.github.com/users/Kimberly380/repos',
         data: 'Authorization token '+githubToken,
         success: function(data){
-        
           repos.all = data;
-          callback();
-        } 
-      })   
+          callback();  
+          console.log(data);
+        }
+      });
     }
   // DONE: Model method that filters the full collection for repos with a particular attribute.
   // You could use this to filter all repos that have a non-zero `forks_count`, `stargazers_count`, or `watchers_count`.
