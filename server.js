@@ -1,4 +1,4 @@
-console.log('token = ' + process.env.GITHUB_TOKEN);
+// console.log('token = ' + process.env.GITHUB_TOKEN);
 
 var requestProxy = require('express-request-proxy'),
   express = require('express'),

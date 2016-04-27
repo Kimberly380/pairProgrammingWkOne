@@ -1,4 +1,4 @@
-console.log('token = ' + process.env.GITHUB_TOKEN);
+
 
 (function(module) {
   var repos = {};
@@ -30,11 +30,3 @@ console.log('token = ' + process.env.GITHUB_TOKEN);
 
 
 
-// url: 'github/user/repos'+
-//      '?per_page=50'+
-//      '&sort=updated',
-// type: 'GET'
-// success: function(data, message, xhr){
-// repos.all = data;
-// }
-// }).done(callback);
